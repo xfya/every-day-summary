@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var json1 = {
+            "name": "鹏哥",
+            "age": 18,
+            "arr1": [1, 2, 3, 4, 5],
+            "string": 'afasfsafa',
+            "arr2": [1, 2, 3, 4, 5],
+            "arr3": [{
+                "name1": "李鹏"
+            }, {
+                "job": "前端开发"
+            }]
+        };
+        var json2 = {};
+
+        function copy(obj1, obj2) {
+            var obj2 = obj2 || {};
+            for (var name in obj1) {
+                if (typeof obj1[name] === "object") {
+                    obj2[name] = (obj1[name].constructor === Array) ? [] : {};
+                    copy(obj1[name], obj2[name])
+
+                } else {
+                    obj2[name] = obj1[name];
+                }
+            }
+        }
+        // 判断是不是数组的方法
+
+        function isArray(x) {
+
+            // typeof  x == 'object' && x.constructor === Array
+            return ((typeof x == "object") && (x.constructor == Array));
+
+        }
+    </script>
+</body>
+
+</html>
