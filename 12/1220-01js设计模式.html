@@ -51,7 +51,9 @@
                     return false;
                 }
                 for (var i = 0, fn; fn = fns[i++];) {
+                    // trigger 拷贝了  fn 的方法 实现了继承
                     fn.apply(this, arguments);
+
                 }
             };
             remove = function(key, fn) {
@@ -65,6 +67,8 @@
                     for (var i = fns.length - 1; i >= 0; i--) {
                         var _fn = fns[i];
                         if (_fn === fn) {
+                            // splice() 方法向/从数组中添加/删除项目，然后返回被删除的项目。
+                            // 注释：该方法会改变原始数组。
                             fns.splice(i, 1);
                         }
                     }

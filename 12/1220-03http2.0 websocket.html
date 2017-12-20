@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>有没有了解http2.0,websocket,https，说一下你的理解以及你所了解的特性。</h3>
+    <div>
+        从本质上来区分，HTTP，WebSocket，TCP，UDP，IP都是协议，而TCP/IP是不同协议的组合，你也可以称之为协议栈，协议族， TCP/IP模型等等都可以，你开心就行，反正都是虚无的不能吃的东西，都是为了完成对应功能而制定的统一规则。 而Socket（套接字）才是真正能操作的东西。Socket的本质是API，是先人对TCP/IP协议族的抽象或者说封装，它就像一个门面，给你一个操作TCP/IP协议的入口，来建立Socket连接。值得一提的是，此Socket是指网络编程下的Socket，而不是Unix中的Socket。虽然概念相似，但是Unix中的Socket不是基于这些乱七八糟的协议，而是基于操作系统本身的文件系统。
+        从分层上来区分，HTTP，WebSocket是应用层协议，TCP，UDP是传输层协议，IP是网络层协议。
+    </div>
+
+    <div>
+        HTTP是基于TCP协议的应用，请求时需建立TCP连接，而且请求包中需要包含请求方法，URI，协议版本等信息，请求结束后断开连接，完成一次请求/响应操作。故称为短连接。 而HTTP/1.1中的keep-alive所保持的长连接则是为了优化每次HTTP请求中TCP连接三次握手的麻烦和资源开销，只建立一次TCP连接，多次的在这个通道上完成请求/响应操作。 值得一提的是，服务器无法主动给客户端推送消息。 作者：Poker_Facer 链接：http://www.jianshu.com/p/42260a2575f8
+        來源：简书 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+    </div>
+
+    <div>
+        WebSocket也是一种协议，并且也是基于TCP协议的。具体流程是WebSocket通过HTTP先发送一个标记了 Upgrade 的请求，服务端解析后开始建立TCP连接，省去了HTTP长连接每次请求都要上传header的冗余，可以理解为WebSocket是HTTP的优化，但WebSocket不仅仅在Web应用程序上得到支持。 作者：Poker_Facer 链接：http://www.jianshu.com/p/42260a2575f8 來源：简书 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+    </div>
+
+    <div>
+        HTTP通信过程属于“你推一下，我走一下”的方式，客户端不发请求则服务器永远无法发送数据给客户端，而WebSocket则在进行第一次HTTP请求之后，其他全部采用TCP通道进行双向通讯。所以，HTTP和WebSocket虽都是基于TCP协议，但是两者属于完全不同的两种通讯方式。
+    </div>
+</body>
+
+</html>
