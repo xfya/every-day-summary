@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // forEach
+        // 语法: 数组.forEach(callback)
+        // 执行: 遍历数组中的每一个元素, 并且将每一个元素的处理过程交给回调函数
+        // 回调函数中会传入两个参数, 一个是遍历的数组元素, 一个是当前的索引.
+
+        // 例如: 遍历打印数组中的每一个元素与索引号
+        // 传统:
+        for (var i = 0; i < arr.length; i++) {
+            console.log(i + ', ' + arr[i]); // 打印, 索引号 与 当前元素
+        }
+        // forEach:
+        arr.forEach(function(value, index) {
+            console.log(index + ', ' + value);
+        });
+
+        // 比较一下 jq 中的 each 方法
+
+        $.each(arr, function(i, v) {})
+            // 为什么要这样抽象???
+            // 由于大多数循环数组都是将数组全部遍历, 因此 forEach 默认就是将数组遍历出来
+            // 我们遍历数组的重点是在操作数组中的 当前元素与当前索引. 因此我们将其抽象出来
+            // 单独放到回调函数中处理. 那么我们的业务逻辑更加集中.
+
+
+
+
+
+        // every 和 some
+        // some 方法, 表示判断数组中的元素只要含有某一个条件即可
+        // every 方法, 表示判断数组中的每一个元素必须含有某个条件
+        // 语法:
+        //     数组.方法名(回调函数) - > boolean
+
+
+        // 语法:
+        //     数组.方法名(回调函数) - > boolean
+        // 说明:
+        //     1 > 回调函数依旧是遍历数组的每一个元素
+        // 2 > 回调函数的参数依旧是 v, i
+        // 3 > 回调函数的作用是用来判断数组中的元素, 所以回调函数有返回值, 返回一个 boolean
+        // 4 > some 方法凡是发现满足了条件的元素就会停止遍历, 并返回 true, 否则返回 false.
+        // 5 > every 方法凡是发现了一个元素不满足条件就会停止遍历, 并返回 false, 否则返回
+
+
+        // filter 函数
+        // 功能: 将一个数组中符合某要求的所有元素筛选出来, 组成一个新的数组返回.
+        // 语法: 数组.filter(回调函数) - > 新数组
+        // 回调函数的参数依旧是 v, i
+        // 回调函数判断的时候, 判断元素 v 是否符合要求, 如果符合返回 true, 否则返回 false
+        // filter 就会将所有的符合元素组成新的数组
+
+        // 案例: 将所有的数字中奇数取出来.
+        // var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+        // arr.filter(v => v % 2 == 1);
+
+        // 等价于
+        // arr.filter(function(v) {
+        //     return v % 2 == 1;
+        // });
+    </script>
+</body>
+
+</html>

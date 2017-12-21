@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. 函数的创建方式有哪几种？ 举一个闭包的的例子， 举一个曾经封装过的函数，
+
+
+        // 一： js 函数创建的几种方式
+
+        // 1. 声明函数
+
+        function fn1() {
+            console.log('我是声明式函数')
+        }
+
+        // 2.函数表达式
+
+        var fn1 = function() {};
+
+        // 3  Function构造函数
+
+
+        // 二 ： 举一个闭包的的例子
+        // 闭包： 是指有权访问另一个函数作用域中的变量的 函数，
+        //  只有函数内部的子函数才能读取局部变量， 因此可以把闭包简单理解成“ 定义在一个函数内部的函数”。 
+        // 所以， 在本质上， 闭包就是将函数内部和函数外部连接起来的一座桥梁。
+        //循环遍历的方式,然后调用函数输出的是0,1,2---通过闭包实现
+
+        //        var arr=[];
+        //        for(var i=0;i<3;i++){
+        //            //0  1   2
+        //            arr[i]=(function (j) {
+        //                return function () {
+        //                    console.log(j);
+        //                }
+        //            })(i);
+        //        }
+        //
+        //        arr[0]();//0
+        //        arr[1]();//1
+        //        arr[2]();//2
+
+
+
+        var fib = function() {
+            var cache = [, 1, 1, 2, 3, 5, 8, 13, 21, 34];
+            return function(n) {
+                var ret;
+                // 1 容错处理
+                if (n < 1) {
+                    return undefined;
+                }
+                // 2 从缓存中获取n项值
+                ret = cache[n];
+                // 3 如果值 为undefined，那么就需要重新计算
+                if (!ret) {
+                    // 3.1 重新计算
+                    ret = n == 1 || n == 2 ? 1 : arguments.callee(n - 1) + arguments.callee(n - 2);
+                    // 3.2 将重新计算后的结果 缓存起来
+                    cache[n] = ret;
+                }
+
+                // 4 返回计算后的结果
+                return ret;
+            };
+        }();
+
+
+        for (var i = 1; i < 51; i++) {
+            console.log(fib(i));
+        }
+
+
+        // 优点
+
+        // 1. 全局变量可能会造成命名冲突， 使用闭包不用担心这个问题， 因为它是私有化， 加强了封装性， 这样保护变量的安全
+
+        // 2. 每个模块都可以调用， 当程序越来越复杂之后， 会带不可预测的危险
+
+        // 所以推荐变量尽量私有化， 当我们需要让局部变量发挥全局变量的作用时， 可以考虑使用闭包
+
+
+
+        // 缺点
+
+        // 由于闭包是驻留在内存中， 会增大内存使用量， 使用不当很容易造成内存泄露， 降低程序的性能，
+
+        // 三   简单阐述一下原型链的使用， 谈谈你对this的理解
+    </script>
+</body>
+
+</html>
