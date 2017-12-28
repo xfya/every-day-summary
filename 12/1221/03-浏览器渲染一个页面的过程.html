@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>浏览器渲染一个页面的过程</title>
+</head>
+
+<body>
+    <script>
+        // 一 ： 浏览器渲染一个页面的过程
+
+        // 1， 浏览器解析html源码， 然后创建一个 DOM树。
+        // 在DOM树中， 每一个HTML标签都有一个对应的节点， 并且每一个文本也都会有一个对应的文本节点。
+        // DOM树的根节点就是 documentElement， 对应的是html标签。
+
+        // 2， 浏览器解析CSS代码， 计算出最终的样式数据。
+        // 对CSS代码中非法的语法她会直接忽略掉。
+        // 解析CSS的时候会按照如下顺序来定义优先级： 浏览器默认设置， 用户设置， 外链样式， 内联样式， html中的style。
+
+        // 3， 构建出DOM树， 并且计算出样式数据后， 下一步就是构建一个 渲染树（ rendering tree）。
+        // 渲染树和DOM树有点像， 但是是有区别的。 DOM树完全和html标签一一对应， 但是渲染树会忽略掉不需要渲染的元素， 比如head、 display: none的元素等。
+        // 而且一大段文本中的每一个行在渲染树中都是独立的一个节点。
+        // 渲染树中的每一个节点都存储有对应的css属性。
+
+        // 4， 一旦渲染树创建好了， 浏览器就可以根据渲染树直接把页面绘制到屏幕上。
+    </script>
+</body>
+
+</html>

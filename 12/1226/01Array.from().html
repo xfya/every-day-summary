@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Array.from()</title>
+</head>
+<body>
+    <script>
+        // Array.from方法用于将两类对象转为真正的数组：
+        // 类似数组的对象（array-like object）和可遍历（iterable）的对象（包括 ES6 新增的数据结构 Set 和 Map）。
+        let arrayLike = {
+            '0': 'a',
+            '1': 'b',
+            '2': 'c',
+            '5': 'c6',
+            length: 3
+        };
+
+
+
+// ES5的写法
+var arr1 = [].slice.call(arrayLike); // ['a', 'b', 'c']
+
+// slice() 方法可从已有的数组中返回选定的元素。
+console.log(arr1)
+// ES6的写法
+let arr2 = Array.from(arrayLike); // ['a', 'b', 'c']
+console.log(arr2)       
+
+
+
+// Array.of
+// Array.of方法用于将一组值，转换为数组。
+
+
+// Set 本身是一个构造函数，用来生成 Set 数据结构。
+// ES6 提供了新的数据结构 Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。
+
+
+
+
+    </script>
+</body>
+</html>

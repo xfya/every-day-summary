@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 前端模块化概述
+
+//         一、为什么需要模块化？
+
+// 　　 代码量骤增 => 分治管理的刚性需求
+
+ 
+
+// 二、模块化方案需解决什么问题？
+
+//        模块化要实现两个东西：模块加载与模块封装。面临的具体问题包括：
+
+//        1、如何定义模块以确保模块的作用域独立，避免命名冲突？
+
+//        2、如何管理模块间的依赖关系，避免重复加载与循环引用？
+
+//        3、模块化的代码如何部署，以降低HTTP请求数？
+
+//        4、如何实现按需加载？
+
+//        5、如何在解决上述问题之后，保证性能且不影响debug？
+
+ 
+
+// 三、原始的解决方案有何局限？
+
+// 　　 命名空间 + 立即执行函数 + script标签
+
+// 　　 局限性：
+
+// 　　 1、全局空间污染
+
+// 　　 2、需手动管理依赖，不具备可扩展性
+
+// 　　 3、无法实现按需加载
+
+ 
+
+// 四、新的解决方案
+
+// 1、CommonJS
+
+//        CommonJS 起源于一个服务端项目 SeverJS，该项目意在通过模块化的开发模式, 解决 JS 作用域的问题。后来发展成了一个致力于构建 JS 生态圈的组织。
+
+//        CommonJS 提供了一套模块加载的规范，其核心语法是通过 module.exports 暴露接口，通过 require() 加载资源。
+
+
+    </script>
+</body>
+</html>
