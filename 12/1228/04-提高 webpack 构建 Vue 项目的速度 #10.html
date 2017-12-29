@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // https: //github.com/lin-xin/blog/issues/10
+        //         DllPlugin 和 DllReferencePlugin
+
+        // 查找了一下资料，发现我们可以利用 webpack 的插件 DllPlugin 和 DllReferencePlugin 来实现我们要的功能。
+
+        // DllPlugin 可以把我们需要打包的第三方库打包成一个 js 文件和一个 json 文件，这个 json 文件中会映射每个打包的模块地址和 id，DllReferencePlugin 通过读取这个json文件来使用打包的这些模块。
+
+        // 接下来就看如何实现。
+
+        // 配置文件
+
+        // 在 build 文件夹中新建 webpack.dll.conf.js (项目基于 vue-cli 的)
+
+        // const path = require('path');
+        // const webpack = require('webpack');
+
+        // module.exports = {
+        //   entry: {
+        //     vendor: ['vue/dist/vue.common.js','vue-router', 'babel-polyfill','axios','vue-echarts-v3']
+        //   },
+        //   output: {
+        //     path: path.join(__dirname, '../static/js'),
+        //     filename: '[name].dll.js',
+        //     library: '[name]_library'       // vendor.dll.js中暴露出的全局变量名
+        //   },
+        //   plugins: [
+        //     new webpack.DllPlugin({
+        //       path: path.join(__dirname, '.', '[name]-manifest.json'),
+        //       name: '[name]_library'
+        //     }),
+        //     new webpack.optimize.UglifyJsPlugin({
+        //       compress: {
+        //         warnings: false
+        //       }
+        //     })
+        //   ]
+        // };
+        // 然后在 package.json 中配置命令
+
+        // "scripts": {
+        //     ...
+        //     "build:dll": "webpack --config build/webpack.dll.conf.js"
+        // }
+        // 执行 npm run build:dll 命令来生成 vendor.dll.js 和 vendor-manifest.json
+
+        // 需要在 index.html 引入 vendor.dll.js
+
+        // <body>
+        //     <div id="app"></div>
+        //     <script src="./static/js/vendor.dll.js">
+    </script>
+    // </body>
+// vendor-manifest.json 的内容大概如下： // { // "name": "vendor_library", // "content": { // "./node_modules/core-js/modules/_export.js": { // "id": 0, // "meta": {} // }, // ... // } // 接下来就在 webpack.base.config.js 中通过 DLLReferencePlugin 来使用 DllPlugin 生成的 DLL
+Bundle // var webpack = require('webpack'); // module.exports = { // entry: { // app: ['./src/main.js'] // }, // module: { // ... // } // // 添加DllReferencePlugin插件 // plugins: [ // new webpack.DllReferencePlugin({ // context: path.resolve(__dirname, '..'),
+// manifest: require('./vendor-manifest.json') // }), // ] // } // 原先 build 需要 95446ms，配置之后执行 build 只需 14360ms，减少了 75% 的时间。 // 但是存在一个问题，当把太多的第三方依赖都打包到 vendor.dll.js 中去，该文件太大也会影响首屏加载时间。所以要权衡利弊，可以异步加载的插件就没有必要打包进来了，不要一味的把所有都打包到这里面来获取构建时的快感。 //
+</script>
+</body>
+
+</html>
