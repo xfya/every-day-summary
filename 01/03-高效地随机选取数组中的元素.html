@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 高效地随机选取数组中的元素
+        // 有前端题目大概是这样的：考虑到性能问题，如何快速从一个巨大的数组中随机获取部分元素。
+
+        // 比如有个数组有100K个元素，从中不重复随机选取10K个元素。
+
+        //元素总数,为了方便演示这里取个小一点的数目比如5，表示总共5个元素
+        var TOTAL_NUM = 5000,
+            //要取得的个数，表示我们要从原数组中随机取3个元素
+            COUNT = 3,
+            //用随机字符串初始化原数组
+            arr = new Array(TOTAL_NUM + 1).join('0').split('').map(function() {
+                // substr() 方法可在字符串中抽取从 start 下标开始的指定数目的字符。
+                return Math.random().toString(36).substr(2);
+            }),
+            //保存结果的数组
+            result = [];
+
+        console.log('原数组:', arr);
+
+        //开始我们的选取过程
+        for (var i = COUNT - 1; i >= 0; i--) {
+            //从原数组中随机取一个元素出来
+            var index = Math.floor(Math.random() * arr.length);
+            //压入结果数组
+            result.push(arr[index]);
+            //将该元素从原数组中删除
+            // splice() 方法向/从数组中添加/删除项目，然后返回被删除的项目。
+            // slice() 方法可从已有的数组中返回选定的元素。 返回一个新的数组，包含从 start 到 end （不包括该元素）的 arrayObject 中的元素。
+            arr.splice(index, 1);
+        };
+        console.log('结果数组:', result);
+
+
+        // console.log(new Array(TOTAL_NUM + 1).join('0').split(''))
+
+
+
+
+        // 洗牌 算法  数组
+
+        //元素总数,为了方便演示这里取个小一点的数目比如5，表示总共5个元素
+        var TOTAL_NUM = 5,
+            //要取得的个数，表示我们要从原数组中随机取3个元素
+            COUNT = 3,
+            //用随机字符串初始化原数组
+            arr = new Array(TOTAL_NUM + 1).join('0').split('').map(function() {
+                return Math.random().toString(36).substr(2);
+            }),
+            //保存结果的数组
+            result = [];
+
+        console.log('原数组:', arr);
+        //随机化原数组
+        arr = shuffle(arr);
+        //选取元素
+        result = arr.slice(0, COUNT);
+        console.log('结果数组:', result);
+        // 相当于把这个随机抽取的元素放到了数组最后面去，表示它已经是被随机过了，
+        // 同时被换走的那个元素跑到前面去了，会在后续的重复操作中被随机掉。
+        // 一轮操作过后，下一轮我们只在剩下的n-1个元素也就是数组的前n-1个元素中进行相同的操作，直到进行到第一个。
+
+
+        function shuffle(array) {
+            var m = array.length,
+                t, i;
+            // 如果还剩有元素…
+            while (m) {
+                // 随机选取一个元素…  -- d的优先级 比* 的 优先级高
+                i = Math.floor(Math.random() * m--);
+                // 与当前元素进行交换
+                t = array[m];
+                array[m] = array[i];
+                array[i] = t;
+            }
+            return array;
+        }
+    </script>
+</body>
+
+</html>

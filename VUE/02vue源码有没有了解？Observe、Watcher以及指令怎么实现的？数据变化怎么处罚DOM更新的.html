@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 先说遍历，很简单，如下10行左右代码就足够遍历一个对象了：
+        function touch(obj) {
+            if (typeof obj === 'object')
+
+                if (Array.isArray(obj)) {
+                    for (let i = 0, l = obj.length; i < l; i++) {
+                        touch(obj[i])
+                    }
+
+                } else {
+                    let keys = Object.keys(obj)
+                    for (let key of keys) touch(obj[key])
+                }
+            console.log(obj)
+        }
+    </script>
+</body>
+
+</html>

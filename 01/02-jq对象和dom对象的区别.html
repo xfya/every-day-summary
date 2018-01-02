@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 因为DOM对象不属于javascript的一部分，它是各个浏览器对javascript的扩展，但各个浏览器又都在实现上有一些不一致，导致javascript代码需要处理很多兼容性问题。为了解决这些兼容性问题，提高开发效率，jQuery库就诞生了。
+
+        // jQuery解决了兼容性问题，再加上它的实现极其巧妙，因此得到了很多人的吹捧。以前有一点javascript基础的人，要写出稍微复杂些的特效，几乎都不可能，但因为jQuery的出现，类似显示隐藏、各种动画效果，都只需要简单的几行代码即可。有些人甚至觉得，jQuery甚至都能替代javascript，而且在各个前端学习的站点、博客中，也是将jQuery和javascript并列作为一类。
+        //         jQuery 对象就是通过 jQuery 包装 DOM 对象后产生的对象
+        // jQuery 对象是 jQuery 独有的. 如果一个对象是 jQuery 对象, 那么它就可以使用 jQuery 里的方法: $(“#tab”).html();
+        //         2.jQuery 对象转成 DOM 对象
+        // jQuery 对象不能使用 DOM 中的方法, 但如果 jQuery 没有封装想要的方法, 不得不使用 DOM方法的时候, 有如下两种处理方法:
+        // (1) jQuery 对象是一个数组对象, 可以通过 [index] 的方法得到对应的 DOM对象.
+        // $("#msg")[0]       
+        // (2) 使用 jQuery 中的 get(index) 方法得到相应的 DOM 对象 
+        // $("#msg").get(0)
+
+        // 3.DOM 对象转成 jQuery 对象
+        // 对于一个 DOM 对象, 只需要用 $() 把 DOM 对象包装起来(jQuery 对象就是通过 jQuery 包装 DOM 对象后产生的对象), 就可以获得一个 jQuery 对象.
+
+        // 1.3.1.	jQuery的DOM对象与普通的DOM对象
+        //         普通的DOM对象此处指的是：使用JS操作DOM的方法返回的对象
+        // var btn = document.getElementById(“btnShow”); //普通的DOM对象
+        // jQuery的DOM对象此处指的是：使用jQuery操作DOM的方法返回的对象
+        // var $btn = $(“#btnShow”); // Query的DOM对象
+        // jQuery拿到普通的DOM对象后会对其进行封装，让其成为具有jQuery方法的jQuery对象
+
+
+        // 把jQuery对象转为DOM对象有两种方式
+        // 第一种方式
+        // var btn1 = $btn[0]; //通过索引的方式把DOM对象取出来（推荐使用此方式）
+        // 第二种方式
+        // var btn2 = $btn.get(0);//调用get()方法也可以
+    </script>
+</body>
+
+</html>

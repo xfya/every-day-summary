@@ -11,21 +11,21 @@
 <body>
     <script>
         /*
-                                                              object instanceof constructor
-                                                                    
-                                                              object
-                                                				要检测的对象.
-                                                				constructor
-                                                				某个构造函数
+                                                                              object instanceof constructor
+                                                                                    
+                                                                              object
+                                                                				要检测的对象.
+                                                                				constructor
+                                                                				某个构造函数
 
 
 
-                                                		instanceof 运算符用来检测 constructor.prototype 是否存在于参数 object 的原型链上。
+                                                                		instanceof 运算符用来检测 constructor.prototype 是否存在于参数 object 的原型链上。
 
 
-                                                			
+                                                                			
 
-                                                         */
+                                                                         */
         // 定义构造函数
         function C() {}
 
@@ -86,6 +86,23 @@
         //       aobj.constructor = A; //将自己的类赋值给对象的constructor属性
         //       alert(aobj.constructor === A) -----------> true;
         //       alert(aobj.constructor === B) -----------> false; //基类不会报true了;
+
+        // jquery.type()
+        //         如果对象是undefined或null，则返回相应的“undefined”或“null”。
+        // jQuery.type( undefined ) === "undefined"
+        // jQuery.type() === "undefined"
+        // jQuery.type( window.notDefined ) === "undefined"
+        // jQuery.type( null ) === "null"
+        // 如果对象有一个内部的[[Class]]和一个浏览器的内置对象的 [[Class]] 相同，我们返回相应的 [[Class]] 名字。 (有关此技术的更多细节。 )
+        // jQuery.type( true ) === "boolean"
+        // jQuery.type( 3 ) === "number"
+        // jQuery.type( "test" ) === "string"
+        // jQuery.type( function(){} ) === "function"
+        // jQuery.type( [] ) === "array"
+        // jQuery.type( new Date() ) === "date"
+        // jQuery.type( new Error() ) === "error" // as of jQuery 1.9
+        // jQuery.type( /test/ ) === "regexp"
+        // 其他一切都将返回它的类型“object”。
     </script>
 </body>
 
