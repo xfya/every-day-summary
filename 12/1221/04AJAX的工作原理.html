@@ -10,44 +10,45 @@
 
 <body>
     <!-- AJAX的工作原理 -->
+    <script>
+        // AJAX全称为“ Asynchronous JavaScript and XML”（ 异步JavaScript和XML）， 是一种创建交互式网页应用的网页开发技术。
+        var xhr = new XMLHttpRequest;
+        // <!--  第三个参数：是以异步的方式还是同步的方式提交。 false 是表示同步吧,true表示异步  -->
+        xhr.open('get', './example.php');
 
-    AJAX全称为“Asynchronous JavaScript and XML”（异步JavaScript和XML），是一种创建交互式网页应用的网页开发技术。
-    var xhr = new XMLHttpRequest;
-    <!--  第三个参数：是以异步的方式还是同步的方式提交。 -->
-    xhr.open('get', './example.php');
-    
-    xhr.send();
+        xhr.send();
 
-    xhr.onreadystatechange = function () {
-        // 通过 xhr.status 可以获取服务器响应的状态码，如200、403、404等
-        // console.log(xhr.status)
-        // 通过 xhr.statusText 可以获取服务器响应的状态信息，如 OK Not Found等
-        // console.log(xhr.statusText);
-        if(xhr.readyState == 4 && xhr.status == 200) {
-            document.querySelector('h1').innerHTML = xhr.responseText;
+        xhr.onreadystatechange = function() {
+            // 通过 xhr.status 可以获取服务器响应的状态码，如200、403、404等
+            // console.log(xhr.status)
+            // 通过 xhr.statusText 可以获取服务器响应的状态信息，如 OK Not Found等
+            // console.log(xhr.statusText);
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                document.querySelector('h1').innerHTML = xhr.responseText;
 
-            // 通过 xhr.getResponseHeader(); 可以获取某个响应头
-            // console.log(xhr.getResponseHeader('X-Powered-By'));
-            // console.log(xhr.getResponseHeader('Server'));
+                // 通过 xhr.getResponseHeader(); 可以获取某个响应头
+                // console.log(xhr.getResponseHeader('X-Powered-By'));
+                // console.log(xhr.getResponseHeader('Server'));
 
-            // 还可以通过 xhr.getAllResponseHeaders() 获得所有响应头
-            console.log(xhr.getAllResponseHeaders());
+                // 还可以通过 xhr.getAllResponseHeaders() 获得所有响应头
+                console.log(xhr.getAllResponseHeaders());
+            }
         }
-    }
-    
-    AJAX的优点：
-  
-    无刷新更新数据。
-    异步与服务器通信。
-    前端和后端负载平衡。
-    界面与应用分离。
 
-    AJAX的缺点:
-    AJAX干掉了Back和History功能，即对浏览器机制的破坏。
-    AJAX的安全问题。
-    对搜索引擎支持较弱。
-    破坏程序的异常处理机制。
+        //     AJAX的优点：
 
+        //     无刷新更新数据。
+        //     异步与服务器通信。
+        //     前端和后端负载平衡。
+        //     界面与应用分离。
+
+        //     AJAX的缺点:
+        //     AJAX干掉了Back和History功能，即对浏览器机制的破坏。
+        //     AJAX的安全问题。
+        //     对搜索引擎支持较弱。
+        //     破坏程序的异常处理机制。
+        //
+    </script>
 </body>
 
 </html>

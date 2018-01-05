@@ -82,7 +82,7 @@
         })();
         // 测试代码
         function d1() {
-            console.log('我是第二个color监听的函数!');
+            console.log('我是第1个color监听的函数!');
         }
 
         function d2() {
@@ -91,7 +91,7 @@
         // 测试代码
         Event.listen("color", d1); // 在 list['color'] 中绑定 d1 函数
         Event.listen("color", d2); // 在 list['color'] 中绑定 d2 函数
-        Event.remove('color', d1); // 在 list['color'] 中移除 d1 函数
+        // Event.remove('color', d1); // 在 list['color'] 中移除 d1 函数
         Event.trigger("color"); // 我是第二个color监听的函数!
     </script>
 </body>
