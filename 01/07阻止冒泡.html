@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>阻止冒泡和默认行文</title>
+    <!-- 
+    使用 return false 阻止事件默认行为，只针对 DOM 0 级事件绑定有效，对 DOM 2 级事件绑定无效
+    阻止事件冒泡，无论是 0 级 和是 2 级事件绑定都必须使用 e.stopPropagation() 方法
+   -->
+</head>
+
+<body>
+    <div id="div1">
+        111
+        <div id="div2">
+            222
+            <div id="div3">
+                333
+            </div>
+        </div>
+    </div>
+    <a href="http://www.baidu.com" id="a">去百度</a>
+    <form action="http://www.baidu.com" type="get" id="form">
+        <div>
+            <label for="">用户名</label>
+            <div>
+                <input type="text" name="username">
+            </div>
+        </div>
+        <div>
+            <label for="">密码</label>
+            <div>
+                <input type="password" name="password">
+            </div>
+        </div>
+        <div>
+            <input type="submit" value="点击登陆">
+        </div>
+    </form>
+    <script src="vendor/jquery-3.2.1.js"></script>
+    <script>
+        // document.getElementById('div1').addEventListener('click', function (e) {
+        //   console.log(111)
+        // })
+
+        // document.getElementById('div2').addEventListener('click', function (e) {
+        //   console.log(222)
+        // })
+
+        // document.getElementById('div3').addEventListener('click', function (e) {
+        //   console.log(333)
+        //   e = e || window.event
+        //     // e.stopPropagation()
+        //   return false
+        // })
+
+        // 关于阻止事件冒泡，必须使用 e.stopPropagation() 方法
+        document.getElementById('div1').onclick = function(e) {
+            console.log(111)
+            e = e || window.event
+        }
+
+        document.getElementById('div2').onclick = function(e) {
+            console.log(222)
+            e = e || window.event
+        }
+
+        document.getElementById('div3').onclick = function(e) {
+            console.log(333)
+            e = e || window.event
+            e.stopPropagation()
+                // return false
+        }
+
+        // document.getElementById('a').onclick = function (e) {
+        //   // e.preventDefault()
+        //   console.log('a 链接默认行为失败了')
+        //   return false
+        // }
+
+        document.getElementById('a').addEventListener('click', function(e) {
+            console.log('a 链接默认行为失败了')
+            return false
+        })
+
+        // 让表单同步提交变为异步提交
+        // 好处：网页不刷新，用户交互更好
+        // 当表单提交的是会触发 submit 该行为函数
+        // 异步提交表单：
+        //    1. 监听表单的 submit 事件
+        //    2. 在事件内部阻止表单默认提交行为
+        //    3. 使用 ajax 发起异步请求
+        //    4. 根据服务端返回响应结果做不同的业务处理
+        document.getElementById('form').onsubmit = function(e) {
+            // window.alert('表单提交了')
+            e.preventDefault()
+            $.ajax({
+                url: 'http://www.baidu.com',
+                type: 'get',
+                data: $(this).serialize(),
+                dataType: 'json',
+                success: function(data) {
+                    console.log(data)
+                },
+                error: function(e) {
+
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>
